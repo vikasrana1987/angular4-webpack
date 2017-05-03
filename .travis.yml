@@ -1,0 +1,16 @@
+before_install:
+  - npm i -g npm@3
+language: node_js
+node_js:
+  - "7.0"
+  - "6.9"
+script:
+  - cp config/internal/.env.travis .env
+  - npm run stat
+  - npm test -- --ci
+  - npm run build:jit
+  - npm run build
+after_script:
+  - yarn global add codecov
+  - codecov
+cache: yarn
