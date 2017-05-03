@@ -6,13 +6,9 @@
 [![devDependency Status](https://david-dm.org/antonybudianto/angular-webpack-starter/dev-status.svg)](https://david-dm.org/antonybudianto/angular-webpack-starter#info=devDependencies)
 [![Dependency Status](https://dependencyci.com/github/antonybudianto/angular-webpack-starter/badge)](https://dependencyci.com/github/antonybudianto/angular-webpack-starter)
 
-> Live Production Build [Demo](http://angular-webpack-starter.surge.sh/)
-
 ## Introduction
 Welcome to Angular Webpack Starter!
 This starter contains almost everything you need to start developing [Angular](https://angular.io/).
-
-> This repo is evolved from [Angular Starter](https://github.com/antonybudianto/angular-starter)
 
 ### Why choose this starter?
 - Extensible via [ngstarter extensions](https://github.com/ngstarter)
