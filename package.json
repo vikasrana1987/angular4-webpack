@@ -1,8 +1,8 @@
 {
-  "name": "angular-webpack-starter",
-  "version": "2.0.1",
-  "author": "Antony Budianto",
-  "description": "Angular Webpack Starter with extensible features",
+  "name": "angular4-webpack",
+  "version": "1.0.0",
+  "author": "Vikas Rana",
+  "description": "Admin Panel using angular 4",
   "main": "src/app/main.ts",
   "repository": {
     "type": "git",
@@ -61,6 +61,7 @@
     "@angular/core": "4.1.0",
     "@angular/forms": "4.1.0",
     "@angular/http": "4.1.0",
+    "@angular/material": "^2.0.0-beta.3",
     "@angular/platform-browser": "4.1.0",
     "@angular/platform-browser-dynamic": "4.1.0",
     "@angular/router": "4.1.0",
