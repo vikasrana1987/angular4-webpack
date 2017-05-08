@@ -1,5 +1,5 @@
 :root {
-    --mainColor: gray;
+  --mainColor: gray;
 }
 
 body {
@@ -17,5 +17,3 @@ body {
 .main-spinner {
     font-size: 3em;
 }
-
-@import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700);
