@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AlertModule } from './alert/alert.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { AppComponent } from './app.component';
 
 // Project Service Imports
@@ -29,6 +30,7 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
         AlertModule,
         HomeModule,
         LoginModule,
+        DashboardModule,
         AppRoutingModule
     ],
     providers: [

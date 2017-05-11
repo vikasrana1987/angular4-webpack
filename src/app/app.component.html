@@ -1,4 +1,4 @@
-<app-navbar [brand]="appBrand"></app-navbar>
-<div class="container" style="margin-top: 100px;">
+<div class="wrapper">
+    <app-navbar [brand]="appBrand" *ngIf="auth.loggedIn()"></app-navbar>
     <router-outlet></router-outlet>
 </div>
