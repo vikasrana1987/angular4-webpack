@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 
 // Project Service Imports
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, DomService } from './_services/index';
 
 @NgModule({
     declarations: [
@@ -37,7 +37,8 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
         AuthGuard,
         AlertService,
         AuthenticationService,
-        UserService
+        UserService,
+        DomService
     ],
     bootstrap: [ AppComponent ]
 })

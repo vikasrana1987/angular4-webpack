@@ -5,7 +5,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 // import model
 import { User } from '../_models/index';
 
-import { AlertService, AuthenticationService } from '../_services/index';
+import { AlertService, AuthenticationService, DomService } from '../_services/index';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -16,7 +16,6 @@ import { AlertService, AuthenticationService } from '../_services/index';
 })
 export class LoginComponent implements OnInit, OnDestroy {
    user: FormGroup;
-   bodyClasses: String = 'login-page';
    submitted: boolean;
    model: any = {};
    loading = false;
@@ -26,18 +25,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private domService: DomService
   ) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
     this.user = this.formBuilder.group({
       'email': ['', [<any>Validators.required,  <any>Validators.pattern(emailRegex) ]],
       'password': ['', Validators.required]
     });
+    this.domService.addClass('body', ['login-page']);
   }
 
   ngOnInit() {
     this.submitted = false;
-    // $('body').addClass(this.bodyClasses);
     // reset login status
     this.authenticationService.logout();
     // get return url from route parameters or default to '/'
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-      // $('body').removeClass(this.bodyClasses);
+      this.domService.removeClass('body', ['login-page']);
   }
 
   onSubmit(isFormValid: boolean, formData: User): void {
