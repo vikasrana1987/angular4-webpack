@@ -6,7 +6,7 @@
   "main": "src/app/main.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antonybudianto/angular-webpack-starter.git"
+    "url": "https://github.com/vikasrana1987/angular4-webpack.git"
   },
   "engines": {
     "node": ">=6.9",
