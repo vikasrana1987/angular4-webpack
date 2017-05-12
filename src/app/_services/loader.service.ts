@@ -3,9 +3,9 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class LoaderService {
-    public loaderStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-    displayLoader(value: boolean) {
-        this.loaderStatus.next(value);
+    display(value: boolean) {
+        this.status.next(value);
     }
 }

@@ -5,7 +5,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 // import model
 import { User } from '../_models/index';
 
-import { AlertService, AuthenticationService, DomService } from '../_services/index';
+import { AlertService, LoaderService, AuthenticationService, DomService } from '../_services/index';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private loaderService: LoaderService,
     private domService: DomService
   ) {
     let emailRegex = '^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$';
@@ -51,15 +52,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit(isFormValid: boolean, formData: User): void {
     this.submitted = true;
     if (isFormValid)  {
-     this.loading = true;
+      this.loaderService.display(true);
      this.authenticationService.login(formData.email, formData.password)
         .subscribe(
             data => {
+                this.loaderService.display(false);
                 this.router.navigate([this.returnUrl]);
             },
             error => {
                 this.alertService.error(error.message);
-                this.loading = false;
+                this.loaderService.display(false);
             });
     }
   }

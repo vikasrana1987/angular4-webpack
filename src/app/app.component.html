@@ -1,5 +1,5 @@
 <div class="wrapper">
     <app-navbar [brand]="appBrand" *ngIf="auth.loggedIn()"></app-navbar>
     <app-sidebar *ngIf="auth.loggedIn()"></app-sidebar>
-    <router-outlet></router-outlet>
+    <router-outlet><span *ngIf="showLoader" class="loading"></span></router-outlet>
 </div>
