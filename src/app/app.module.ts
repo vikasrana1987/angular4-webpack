@@ -11,6 +11,7 @@ import { AlertModule } from './alert/alert.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { UsersModule } from './users/users.module';
 import { AppComponent } from './app.component';
 
 // Project Service Imports
@@ -31,6 +32,7 @@ import { AlertService, LoaderService, AuthenticationService, UserService, DomSer
         HomeModule,
         LoginModule,
         DashboardModule,
+        UsersModule,
         AppRoutingModule
     ],
     providers: [
