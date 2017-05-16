@@ -9,7 +9,7 @@ var app = express(); // define our app using express
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./server/config'); // get our config file
-var cors = require('cors');
+//var cors = require('cors');
 var http = require('http');
 var path = require('path');
 // load models
@@ -18,7 +18,7 @@ var models = require('./server/models');
 app.set('superSecret', config.secret); // secret variable
 var port = process.env.PORT || 8090; // set our port
 
-var whitelist = ['http://localhost:8080']
+/* var whitelist = ['http://localhost:8080']
 var corsOptions = {
     origin: function(origin, callback) {
         var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -26,7 +26,7 @@ var corsOptions = {
     },
     credentials: true
 };
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); */
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,6 +34,25 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'dist')));
 app.set('view engine', 'ejs');
+
+app.all('/*', function(req, res, next) {
+  // CORS headers
+  var allowedOrigins = ['http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:8090', 'http://localhost:8090'];
+  var origin = req.headers.origin;
+  if(allowedOrigins.indexOf(origin) > -1){
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  //res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // restrict it to the required domain
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  // Set custom headers for CORS
+  res.header('Access-Control-Allow-Headers', 'Content-type,Authorization,Accept,X-Access-Token,X-Key');
+  res.header('Access-Control-Allow-Credentials', true);
+  if (req.method == 'OPTIONS') {
+    res.status(200).end();
+  } else {
+    next();
+  }
+});
 
 app.get('*', function(req, res){
     res.status(404).json({

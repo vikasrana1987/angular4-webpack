@@ -1,6 +1,10 @@
 var models = require('./../models');
 var passwordHash = require('password-hash');
 
+function expiresIn(numDays) {
+	var dateObj = new Date();
+	return dateObj.setDate(dateObj.getDate() + numDays);
+}
 exports.authenticate = function(app, jwt) {
     return function(req, res) {
         models.User.findOne({ where: { email: req.body.username } }).then(function(user) {
@@ -20,7 +24,7 @@ exports.authenticate = function(app, jwt) {
                     // if user is found and password is right
                     // create a token
                     var token = jwt.sign(userObj, app.get('superSecret'), {
-                        expiresIn: 1440
+                        expiresIn: expiresIn(1) // 1 day
                     });
 
                     // return the information including token as JSON

@@ -4,22 +4,24 @@ var path = require('path');
 var Sequelize = require('sequelize');
 var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || 'development';
+var config = require('./../config'); // get our config file
+var logger = require('./../lib/logger');
 var db = {};
 
-var sequelize = new Sequelize('nodejs', 'root', '', {
-    host: 'localhost',
+var sequelize = new Sequelize(config.database.db, config.database.user, config.database.password, {
+    host: config.database.host,
     dialect: 'mysql',
-
     pool: {
         max: 5,
         min: 0,
         idle: 10000
     },
-
+	logging: function (str) {
+        logger.info(str);
+    }
 });
 
 module.exports = sequelize;
-
 
 fs
     .readdirSync(__dirname)

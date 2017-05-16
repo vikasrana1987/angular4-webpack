@@ -80,7 +80,6 @@
     "compression-webpack-plugin": "0.4.0",
     "copy-webpack-plugin": "^4.0.1",
     "core-js": "^2.4.1",
-    "cors": "^2.8.3",
     "css-loader": "^0.27.3",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
@@ -122,6 +121,7 @@
     "typescript": "^2.3.0",
     "webpack": "2.4.1",
     "webpack-merge": "4.1.0",
+    "winston": "^2.3.1",
     "zone.js": "0.8.9"
   },
   "devDependencies": {
