@@ -21,6 +21,11 @@ var sequelize = new Sequelize(config.database.db, config.database.user, config.d
     }
 });
 
+var sequelizeAttributeRoles = require('sequelize-attribute-roles');
+   
+// Guard attributes on all models of a Sequelize instance 
+sequelizeAttributeRoles(sequelize);
+
 module.exports = sequelize;
 
 fs
