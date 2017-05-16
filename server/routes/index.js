@@ -23,29 +23,46 @@ function tokenProtection(req, res, next){
 	} else {
 		token = req.body.token || req.query.token || req.headers['x-access-token'];
 	}
-	// decode token
-	if (token && typeof token != undefined) {
-		// verifies secret and checks exp
-		jwt.verify(token, app.get('superSecret'), function(err, decoded) {
-			if (err) {
-				return res.status(401).send({
-					'success': false,
-					'error-message': 'Unclassified Authentication Failure',
-					'error-auxiliary': 'Access token is invalid. Please try with new Access token'
-				});
-			} else {
-				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;
-				next();
+	try {
+		// decode token
+		if (token && typeof token != undefined) {
+			// verifies secret and checks exp
+			jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+				if (err) {
+					res.status(401).json({
+						code: 401,
+						success: false,
+						message: 'Access token is invalid. Please try with new Access token',
+						payload: {
+							
+						}
+					});
+				} else {
+					// if everything is good, save to request for use in other routes
+					req.decoded = decoded;
+					next();
+				}
+			});
+		} else {
+			// if there is no token
+			// return an error
+			res.status(403).json({
+				code: 403,
+				success: false,
+				message: 'Missing authorization token. Please try with valid Access token',
+				payload: {
+					
+				}
+			});
+		}
+	} catch (err) {
+		res.status(500).json({
+			code: 500,
+			success: false,
+			message: 'Oops something went wrong',
+			payload: {
+				
 			}
 		});
-	} else {
-		// if there is no token
-		// return an error
-		return res.status(403).send({
-			'success': false,
-			'error-message': 'Unclassified Authentication Failure',
-			'error-auxiliary': 'Missing authorization token. Please try with valid Access token.'
-		});
-	}
+    }
 }	
