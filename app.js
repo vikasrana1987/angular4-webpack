@@ -12,7 +12,7 @@ var config = require('./server/config'); // get our config file
 //var cors = require('cors');
 var http = require('http');
 var path = require('path');
-
+var logger = require('./server/lib/logger').logger;
 // load models
 var models = require('./server/models');
 
@@ -60,7 +60,7 @@ app.all('/*', function(req, res, next) {
 
 var router = express.Router(); // get an instance of the express Router
 // all of our routes will be prefixed with /api
-app.use('/api/v1', router);
+app.use('/api', router);
 require('./server/routes/index')(app, router, jwt);
 
 app.use(function(req, res, next){
@@ -119,5 +119,5 @@ function onError(error) {
 function onListening() {
     var addr = server.address();
     var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-    console.log('Listening on ' + bind);
+    logger.info('Listening on ' + bind);
 }
