@@ -37,22 +37,22 @@ app.set('view engine', 'ejs');
 app.set('superSecret', config.secret); // secret variable
 var global = {};
 app.all('/*', function(req, res, next) {
-	// CORS headers
-	var allowedOrigins = ['http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:8090', 'http://localhost:8090'];
-	var origin = req.headers.origin;
-	if(allowedOrigins.indexOf(origin) > -1){
-       res.setHeader('Access-Control-Allow-Origin', origin);
-	}
-	//res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // restrict it to the required domain
-	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-	// Set custom headers for CORS
-	res.header('Access-Control-Allow-Headers', 'Content-type,Authorization,Accept,X-Access-Token,X-Key');
-	res.header('Access-Control-Allow-Credentials', true);
-	if (req.method == 'OPTIONS') {
-		res.status(200).end();
-	} else {
-		next();
-	}
+    // CORS headers
+    var allowedOrigins = ['http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:8090', 'http://localhost:8090'];
+    var origin = req.headers.origin;
+    if (allowedOrigins.indexOf(origin) > -1) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    //res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // restrict it to the required domain
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    // Set custom headers for CORS
+    res.header('Access-Control-Allow-Headers', 'Content-type,Authorization,Accept,X-Access-Token,X-Key');
+    res.header('Access-Control-Allow-Credentials', true);
+    if (req.method == 'OPTIONS') {
+        res.status(200).end();
+    } else {
+        next();
+    }
 });
 
 // parse application/vnd.api+json as json
@@ -63,15 +63,15 @@ var router = express.Router(); // get an instance of the express Router
 app.use('/api', router);
 require('./server/routes/index')(app, router, jwt);
 
-app.use(function(req, res, next){
-	res.status(404).json({
-		code: 404,
-		success: false,
-		message: 'Not Found',
-		payload: {
-			/* Application-specific data would go here. */
-	    }
-	});
+app.use(function(req, res, next) {
+    res.status(404).json({
+        code: 404,
+        success: false,
+        message: 'Not Found',
+        payload: {
+            /* Application-specific data would go here. */
+        }
+    });
 });
 // START THE SERVER
 // =============================================================================
