@@ -61,7 +61,7 @@ function tokenProtection(req, res, next){
 			success: false,
 			message: 'Oops something went wrong',
 			payload: {
-				
+				error:err.message
 			}
 		});
     }

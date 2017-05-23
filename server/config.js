@@ -1,5 +1,5 @@
 module.exports = {
-    secret: 'ilovescotchyscotch',
+    secret: '!@!#%^@#@7878967@(*(*^&*^#*^$',
     database: {
 		host : "localhost",
 		user : "root",

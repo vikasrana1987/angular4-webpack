@@ -7,7 +7,7 @@ function expiresIn(numDays) {
 }
 exports.authenticate = function(app, jwt) {
     return function(req, res) {
-        models.User.findOne({ where: { email: req.body.username } }).then(function(user) {
+        models.User.findOne({attributes: ['id','password'], where: { email: req.body.username } }).then(function(user) {
 			if (!user) {
                 res.status(401).json({
                     success: false,
