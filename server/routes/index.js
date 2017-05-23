@@ -1,6 +1,9 @@
 var _AUTH = require('./auth');
+var global = {};
+
 module.exports = function(app,router,jwt) {
-	
+	global.app = app;
+	global.jwt = jwt;
 	/* Auth */
 	router.post('/authenticate', _AUTH.authenticate(app, jwt));
 	/* End Auth */
@@ -27,7 +30,7 @@ function tokenProtection(req, res, next){
 		// decode token
 		if (token && typeof token != undefined) {
 			// verifies secret and checks exp
-			jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+			global.jwt.verify(token, global.app.get('superSecret'), function(err, decoded) {
 				if (err) {
 					res.status(401).json({
 						code: 401,
