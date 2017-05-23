@@ -1,5 +1,4 @@
 var _AUTH = require('./auth');
-var global = {};
 
 module.exports = function(app,router,jwt) {
 	global.app = app;

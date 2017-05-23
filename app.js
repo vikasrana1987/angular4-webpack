@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.set('view engine', 'ejs');
 app.set('superSecret', config.secret); // secret variable
-
+var global = {};
 app.all('/*', function(req, res, next) {
 	// CORS headers
 	var allowedOrigins = ['http://127.0.0.1:8080', 'http://localhost:8080', 'http://127.0.0.1:8090', 'http://localhost:8090'];
